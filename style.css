@@ -27,6 +27,65 @@ body {
     align-items: center;
 }
 
-.result {
+.roundResult{
+    height: 16px;
     text-align: center;
+}
+
+.gameResult{
+    text-align: center;
+    margin: 0;
+}
+
+img {
+    width: 5vw;
+    height: auto;
+}
+
+button,
+.playerImg,
+.computerImg {
+    width: 5vw;
+    height: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 20vw;
+}
+
+.container-result {
+    margin-top: 2vh;
+    width: 20vw;
+    height: 10vh;
+    border: 2px dotted black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.containerScores {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 20vw;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border: 2px dotted black;
+    padding: 10px;
+}
+
+.player,
+.computer {
+    width: 9vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -10,7 +10,26 @@ function computerPlay(){
 }
 
 function playRound(playerSelection, computerSelection){
-    let playerHand = playerSelection.slice(0,1).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    playerHand = playerSelection.slice(0,1).toUpperCase() + playerSelection.slice(1).toLowerCase();
+        //Player IMG
+    const playerImage = document.querySelector(`img[alt = "${playerSelection}"]`).getAttribute('src');
+    console.log(document.querySelector('.playerImg').firstElementChild);
+    if(document.querySelector('.playerImg').firstElementChild != null)
+    {
+        document.querySelector('.playerImg').removeChild(document.querySelector('.playerImg').firstElementChild);
+    }
+    document.querySelector('.playerImg').appendChild(document.createElement('img')).src = playerImage;
+
+        //Computer IMG
+    const computerImage = document.querySelector(`img[alt = "${computerSelection}"]`).getAttribute('src');
+    console.log(document.querySelector('.computerImg').firstElementChild);
+    if(document.querySelector('.computerImg').firstElementChild != null)
+    {
+        document.querySelector('.computerImg').removeChild(document.querySelector('.computerImg').firstElementChild);
+    }
+    document.querySelector('.computerImg').appendChild(document.createElement('img')).src = computerImage;
+
+        //Round Text
     if(playerHand == "Rock"){
         if(computerSelection == "Rock"){
             return "It's a Tie!";
@@ -55,24 +74,29 @@ function playRound(playerSelection, computerSelection){
 function game(e){
         let playerSelection = this.getAttribute('value');
         let computerSelection = computerPlay();
-        document.querySelector('.result').innerHTML = playRound(playerSelection, computerSelection);
-        document.querySelector('.score').textContent = `Player: ${playerScore} vs Computer: ${computerScore}`;
+        document.querySelector('.roundResult').innerHTML = playRound(playerSelection, computerSelection);
+        document.querySelector('.playerScore').textContent = `Player: ${playerScore}`;
+        document.querySelector('.computerScore').textContent = `Computer: ${computerScore}`;
+        if (computerScore < 5 && playerScore < 5)
+        {
+            document.querySelector('.gameResult').innerHTML = "";
+        }
         if (computerScore == 5)
         {
-            document.querySelector('.result').innerHTML = `Computer Wins! <br>Start a new game`;
+            document.querySelector('.gameResult').innerHTML = `End Result:<br>Computer Wins! <br>Start a new game`;
             computerScore = 0;
             playerScore = 0;
         }
         if (playerScore == 5)
         {
-            document.querySelector('.result').innerHTML = `Player Wins! <br>Start a new game`;
+            document.querySelector('.gameResult').innerHTML = `End Result:<br>Player Wins! <br>Start a new game`;
             computerScore = 0;
             playerScore = 0;
         }
 }
 
-document.querySelector('.score').textContent = `player: ${playerScore} vs computer: ${computerScore}`;
+document.querySelector('.playerScore').textContent = `Player: ${playerScore}`;
+document.querySelector('.computerScore').textContent = `Computer: ${computerScore}`;
 
 const btns = document.querySelectorAll('button');
 btns.forEach(btn => btn.addEventListener('click', game));
-
